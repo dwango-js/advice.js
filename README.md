@@ -23,6 +23,20 @@ advice.after(obj, 'foo', function() {
 });
 ```
 
+## Installation
+
+### Node
+
+```sh
+$ npm install advice.js
+```
+
+### Bower
+
+```sh
+$ bower install advice
+```
+
 ## Documentation
 
 ### advice.before(base, fn)
