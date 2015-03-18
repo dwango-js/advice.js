@@ -1,0 +1,16 @@
+{
+  "name": "advice",
+  "version": "0.0.0",
+  "description": "Simple AOP module",
+  "main": "advice.js",
+  "keywords": [
+    "aop",
+    "aspect"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}
