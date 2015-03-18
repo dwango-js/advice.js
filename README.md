@@ -90,6 +90,12 @@ results.join(', ');// 'before: foo, base: bar, after: foo'
 
 Redefine the `obj.method`  which around `obj.method` by `fn`.
 
+## Tests
+
+```sh
+npm test
+```
+
 ## License
 
 MIT
