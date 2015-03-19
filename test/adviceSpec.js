@@ -69,33 +69,33 @@ describe('advice', function() {
 
     describe('before', function() {
       it('should compose a new method which executes the "before" function before the base one', function() {
-        advice.before(subject, 'base', function(value) {
+        var fn = advice.before(subject, 'base', function(value) {
           var result = 'before: ' + value;
           this.results.push(result);
           return result;
         });
 
-        expect(subject.base('foo')).toEqual('base: foo');
+        expect(fn('foo')).toEqual('base: foo');
         expect(subject.results.join(', ')).toEqual('before: foo, base: foo');
       });
     });
 
     describe('after', function () {
       it('should compose a new method which executes the "before" function before the base one', function() {
-        advice.after(subject, 'base', function(value) {
+        var fn = advice.after(subject, 'base', function(value) {
           var result = 'after: ' + value;
           this.results.push(result);
           return result;
         });
 
-        expect(subject.base('foo')).toEqual('base: foo');
+        expect(fn('foo')).toEqual('base: foo');
         expect(subject.results.join(', ')).toEqual('base: foo, after: foo');
       });
     });
 
     describe('around', function () {
       it('should compose a new method which executes the "around" function with base one in the first argument', function() {
-        advice.around(subject, 'base', function(base, value) {
+        var fn = advice.around(subject, 'base', function(base, value) {
           var result = 'around: ' + value;
           this.results.push('before: ' + value);
           base.call(this, 'bar');
@@ -103,7 +103,7 @@ describe('advice', function() {
           return result;
         });
 
-        expect(subject.base('foo')).toEqual('around: foo');
+        expect(fn('foo')).toEqual('around: foo');
         expect(subject.results.join(', ')).toEqual('before: foo, base: bar, after: foo');
       });
     });
