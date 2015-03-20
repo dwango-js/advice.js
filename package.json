@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "description": "Simple AOP module",
   "scripts": {
-    "prepublish": "npm run build",
-    "test": "npm run build && karma start",
-    "build": "browserify -s advice index.js > advice.js"
+    "prepublish": "make build",
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -13,6 +12,7 @@
   },
   "devDependencies": {
     "browserify": "~9.0.3",
+    "jasmine": "~2.2.1",
     "karma": "~0.12.31",
     "karma-cli": "0.0.4",
     "karma-jasmine": "~0.3.5",

@@ -1,3 +1,7 @@
+if ('undefined' === typeof advice) {
+  advice = require('../');
+}
+
 describe('advice', function() {
 
   describe('compose a function', function() {
