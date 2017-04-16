@@ -3,6 +3,13 @@
 
 var slice = Array.prototype.slice;
 
+var bind = Function.prototype.bind || function (context, fn) {
+  return function () {
+    var args = slice.call(arguments);
+    return fn.apply(context, args);
+  }
+};
+
 function before(base, fn) {
   return function() {
     var args = slice.call(arguments);
@@ -33,7 +40,7 @@ function create(advice) {
     if ('function' === typeof name) {
       return advice(context, name);
     } else {
-      context[name] = advice(context[name], fn);
+      return advice(bind(context, context[name]), bind(context, fn));
     }
   };
 }

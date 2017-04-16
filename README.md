@@ -19,8 +19,8 @@ var obj = {
   foo: function() {}
 };
 
-// redefine a method which calls a function after obj.foo returns
-advice.after(obj, 'foo', function() {
+// compose a new function which calls a function after obj.foo returns
+var fn = advice.after(obj, 'foo', function() {
   console.log('obj.foo was called');
 });
 ```
@@ -47,9 +47,9 @@ Return compose a new function which calls a `fn` before `base` returns.
 
 Order: `fn` -> `base`
 
-### advice.before(obj, method, fn) : void
+### advice.before(obj, method, fn) : function
 
-Redefine the `obj.method` which will be called a `fn` before the original `obj.method` is called.
+Return compose a new function which will call an `fn` before the original `obj.method` is called.
 
 Order: `fn` -> `obj.method`
 
@@ -59,15 +59,15 @@ Return compose a new function which calls a `fn` after `base` returns.
 
 Order: `base` -> `fn`
 
-### advice.after(obj, method, fn) : void
+### advice.after(obj, method, fn) : function
 
-Redefine the `obj.method`  which will be called a `fn` before `obj.method` is called.
+Return compose a new function which will call an `fn` after the original `obj.method` is called.
 
 Order: `obj.method` ->  `fn`
 
 ### advice.around(base, fn) : function
 
-Return compose a new function which around the `base` by `fn`.
+Return compose a new function which will be called around the `base` by `fn`.
 
 ```js
 function base() {}
@@ -86,9 +86,10 @@ fn('foo'); // 'around: foo'
 results.join(', ');// 'before: foo, base: bar, after: foo'
 ```
 
-### advice.around(obj, method, fn) : void
+### advice.around(obj, method, fn) : function
 
-Redefine the `obj.method`  which around `obj.method` by `fn`.
+Return compose a new function which will be called around the `obj.method` by `fn`.
+
 
 ## Tests
 
